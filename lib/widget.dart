@@ -180,6 +180,8 @@ class InfiniteList extends StatefulWidget {
 
   final Key _centerKey;
 
+  final ScrollPhysics physics;
+
   InfiniteList({
     Key key,
     @required this.builder,
@@ -191,6 +193,7 @@ class InfiniteList extends StatefulWidget {
     this.anchor = 0.0,
     this.cacheExtent,
     this.scrollDirection = Axis.vertical,
+    this.physics,
   })  : _centerKey = (direction == InfiniteListDirection.multi) ? UniqueKey() : null,
         super(key: key);
 
@@ -248,6 +251,7 @@ class _InfiniteListState extends State<InfiniteList> {
 
   @override
   Widget build(BuildContext context) => CustomScrollView(
+    physics: widget.physics,
     controller: widget.controller,
     center: widget._centerKey,
     slivers: _slivers,
